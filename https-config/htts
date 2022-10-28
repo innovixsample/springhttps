@@ -1,0 +1,49 @@
+command lines used 
+==========================================================================================================================================================
+
+keytool -genkey -alias https-example -storetype jkS -keyalg RSA -keysize 2048 -validity 365 -keystore https-example.jks
+keytool -export -keystore https-example.jks -alias https-example -file local-cert.crt
+==========================================================================================================================================================
+#keystore name:https-example
+#password:sridhar
+
+
+password sridhar
+
+
+innovix00@innovix00:~$ keytool -genkey -alias https-example -storetype jkS -keyalg RSA -keysize 2048 -validity 365 -keystore https-example.jks
+Enter keystore password:  
+Re-enter new password: 
+They don't match. Try again
+Enter keystore password:  
+Re-enter new password: 
+What is your first and last name?
+  [Unknown]:  sri    
+What is the name of your organizational unit?
+  [Unknown]:  innovix
+What is the name of your organization?
+  [Unknown]:  innovix
+What is the name of your City or Locality?
+  [Unknown]:  chennai
+What is the name of your State or Province?
+  [Unknown]:  tn
+What is the two-letter country code for this unit?
+  [Unknown]:  'tn
+Is CN=sri, OU=innovix, O=innovix, L=chenna, ST=tn, C='tn correct?
+  [no]:  yes
+
+Enter key password for <https-example>
+	(RETURN if same as keystore password):  
+Re-enter new password: 
+
+Warning:
+The JKS keystore uses a proprietary format. It is recommended to migrate to PKCS12 which is an industry standard format using "keytool -importkeystore -srckeystore https-example.jks -destkeystore https-example.jks -deststoretype pkcs12".
+innovix00@innovix00:~$ 
+
+
+
+
+
+keytool -genkeypair -alias local_ssl -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore local-ssl.p12 –validity 365 -ext san=dns:localhost
+keytool -export -keystore https-example.jks -alias https-example -file local-cert.crt
+
